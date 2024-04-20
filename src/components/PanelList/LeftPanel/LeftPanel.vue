@@ -4,7 +4,7 @@
       <div class="block-lists">
         <List
           v-for="index in 5"
-          :key="index"
+          :listNumber="index"
           
           :count="index"
           :items="randomItem(5)"

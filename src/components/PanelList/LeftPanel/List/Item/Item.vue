@@ -4,13 +4,18 @@
       class="item-left-input"
       type="checkbox"
       :checked="selectedAllInputs"
-      
+      @change="updateChecked"
     />
     <span>Item {{ number }}</span>
   </div>
   <div class="item-right-block">
-    <input class="count-input" type="text" v-model="countValue" />
-    <input class="color-input" type="color" v-model="colorValue" />
+    <input class="count-input" type="text" v-model="countValue" @change="updateCount"/>
+    <input
+      class="color-input"
+      type="color"
+      v-model="colorValue"
+      @input="updateColorValue"
+    />
   </div>
 </template>
 
@@ -19,10 +24,38 @@ export default {
   props: ["number", "color", "selectedAllInputs", "listNumber"],
   data() {
     return {
+      indexList: this.listNumber,
+      numberItem: this.number,
       isChecked: false,
       countValue: 0,
       colorValue: this.color,
     };
+  },
+  methods: {
+    updateCount(event){
+      this.countValue = event.target.value
+    },
+    updateColorValue(event) {
+      this.colorValue = event.target.value;
+    },
+    updateChecked(event) {
+      this.isChecked = event.target.checked;
+
+      // const test = ['1','2','3']
+      // this.$store.commit('addLists', test)
+      const indexList = this.indexList;
+      const numberItem = "item" + this.numberItem;
+
+      const itemList = {
+        indexList: this.indexList,
+        numberItem: "item" + this.numberItem,
+        isChecked: this.isChecked,
+        countValue: parseFloat(this.countValue),
+        colorValue: this.colorValue,
+      };
+
+      this.$store.commit("addLists", itemList);
+    },
   },
 };
 </script>

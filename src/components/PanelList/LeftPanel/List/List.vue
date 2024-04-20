@@ -22,7 +22,7 @@
     class="item-1"
   >
     <Item
-      :listNumber="key"
+      :listNumber="'list'+listNumber"
       :number="index + 1"
       :color="getColorByNumber(index)"
       :selectedAllInputs="selectedAllInputs"
@@ -35,7 +35,7 @@ import arrow from "@/assets/images/img/arrow-down.png";
 import Item from "./Item/Item.vue";
 
 export default {
-  props: ["count", "items", "key"],
+  props: ["count", "items", "listNumber"],
   data() {
     return {
       arrow,

@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  props: ["number"],
+  props: ["number", 'list'],
   data() {
     return {
       openList: false,
@@ -24,7 +24,9 @@ export default {
   },
   computed: {
     mixButton(){
+      console.log(this.list)
       return this.$store.state.mixButton
+      
     }
   },
   methods: {

@@ -1,6 +1,7 @@
 <script>
 import PanelList from './components/PanelList/PanelList.vue';
 
+
 export default{
   data(){
     return{
