@@ -11,7 +11,7 @@ export default {
 
 <template>
     <div v-if="item" class="block-color" v-for="(block, index) in item[1]" :style="{backgroundColor: item[2]}">
-        
+        123
     </div>
     <!-- <button @click="checkData"></button> -->
 </template>
