@@ -27,7 +27,7 @@ export default {
       indexList: this.listNumber,
       numberItem: this.number,
       isChecked: false,
-      countValue: 0,
+      countValue: 1,
       colorValue: this.color,
     };
   },

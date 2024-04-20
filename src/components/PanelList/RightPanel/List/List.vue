@@ -2,46 +2,58 @@
   <div @click="isCheckedList" class="list-block">
     <div class="list-title-button">
       <span>List {{ number }}</span>
-      <button v-if="openList" @click.stop="mixColorSquare">{{ textButton }}</button>
+      <button v-if="openList" @click.stop="mixColorSquare">
+        {{ textButton }}
+      </button>
     </div>
 
     <div v-if="openList" class="list-colors">
-    <div class="color-column" v-for="(column, index) in 3">
-      <div class="block-color" v-for="(block, index) in 40"></div>
-    </div>
+      <div
+        class="color-column"
+        v-for="(column, index) in listKeys"
+        :key="column">
+      
+        <Item v-if="listKeys && !mixButton"    
+            :item="Object.values(list[column])"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Item from "./RightItem/Item.vue";
 export default {
-  props: ["number", 'list'],
+  props: ["number", "list"],
   data() {
     return {
+      mixButton: false,
       openList: false,
-      textButton: 'Перемешать'
+      textButton: "Перемешать",
     };
   },
   computed: {
-    mixButton(){
-      console.log(this.list)
-      return this.$store.state.mixButton
-      
+    listKeys(){
+      return this.list? Object.keys(this.list) : []
     }
   },
   methods: {
     isCheckedList() {
       this.openList = !this.openList;
+      
     },
     mixColorSquare() {
       if (!this.mixButton) {
         this.textButton = "Сортировать";
-        this.$store.commit('toggleMixButton')
+        this.mixButton = !this.mixButton
       } else {
         this.textButton = "Перемешать";
-        this.$store.commit('toggleMixButton')
+        this.mixButton = !this.mixButton
       }
     },
+  },
+  components: {
+    Item,
   },
 };
 </script>
@@ -74,13 +86,5 @@ export default {
     flex-direction: column;
     gap: 5px;
   }
-}
-.block-color{
-  display: inline-block;
-  background-color: brown;
-  width: 12px;
-  height: 12px;
-  margin: 3px;
-  font-size: 0px;
 }
 </style>

@@ -2,13 +2,11 @@ import Vuex from "vuex";
 
 export default new Vuex.Store({
   state: {
-    mixButton: false,
+    
     lists: {},
   },
   mutations: {
-    toggleMixButton(state) {
-      state.mixButton = !state.mixButton;
-    },
+
     addLists(state, payload) {
 
       // Провека List и добавление отсутствующих
@@ -27,7 +25,7 @@ export default new Vuex.Store({
       }
       
 
-      console.log(state.lists);
+      
     },
   },
   getters: {

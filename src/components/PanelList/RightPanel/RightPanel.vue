@@ -27,26 +27,29 @@ export default {
   methods: {
     giveList(index) {
       const listKey = `list${index}`;
+      
       if (this.localLists && this.localLists[listKey]) {
-        return {
-          item: this.localLists[listKey],
-        };
+        
+        return this.localLists[listKey]
+        
       } else {
         return null;
       }
+      
     },
   },
   computed: {
-    ...mapState(["allLists"]),
+    ...mapState(["lists"]),
   },
   mounted() {
-    console.log("allLists", this.allLists);
+    
   },
   watch:{
-    allLists: {
+    lists: {
       handler(newLists){
         this.localLists = {...newLists}
-        console.log("localLists", this.localLists);
+        // console.log("localLists видит изменения", this.localLists.list1);
+        
       },
       deep: true
     }
